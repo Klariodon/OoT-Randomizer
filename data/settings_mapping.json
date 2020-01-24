@@ -251,6 +251,7 @@
           "row_span": [1,1,1],
           "settings": [
             "no_escape_sequence",
+			"fast_dungeons",
             "no_guard_stealth",
             "no_epona_race",
             "no_first_dampe_race",
@@ -258,6 +259,7 @@
             "fast_chests",
             "free_scarecrow",
             "start_with_fast_travel",
+			"start_with_suns_song",
             "start_with_rupees",
             "start_with_wallet",
             "start_with_deku_equipment",
