@@ -1767,6 +1767,14 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'worst_setting',
+        gui_text       = '???',
+        gui_tooltip    = '''\
+            !!!.
+        ''',
+        shared         = True,
+    ),
+    Checkbutton(
         name           = 'chicken_count_random',
         gui_text       = 'Random Cucco Count',
         gui_tooltip    = '''\
