@@ -1770,7 +1770,7 @@ setting_infos = [
         name           = 'worst_setting',
         gui_text       = '???',
         gui_tooltip    = '''\
-            !!!.
+            !!!
         ''',
         shared         = True,
     ),
