@@ -31,7 +31,8 @@
         },
         "exits": {
             "Dodongos Cavern Beginning": "True",
-            "Dodongos Cavern Climb": "
+            "Dodongos Cavern Boss Area": "fd",
+			"Dodongos Cavern Climb": "
                 here(
                     (is_adult or 
                         ((Sticks or can_use(Dins_Fire)) and 
@@ -74,14 +75,14 @@
         "region_name": "Dodongos Cavern Boss Area",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Chest Above King Dodongo": "True",
+            "Chest Above King Dodongo": "has_explosives",
             "King Dodongo Heart": "
-                (Bombs or Progressive_Strength_Upgrade) and 
+                has_explosives and (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
             "King Dodongo": "
-                (Bombs or Progressive_Strength_Upgrade) and 
+                has_explosives and (Bombs or Progressive_Strength_Upgrade) and 
                 (is_adult or Sticks or Kokiri_Sword)",
-            "GS Dodongo's Cavern Back Room": "True",
+            "GS Dodongo's Cavern Back Room": "has_explosives",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
