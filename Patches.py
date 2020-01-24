@@ -897,7 +897,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
 
     # Initial Save Data
 
-    if not world.useful_cutscenes:
+    if not world.useful_cutscenes and not world.fast_dungeons:
         save_context.write_bits(0x00D4 + 0x03 * 0x1C + 0x04 + 0x0, 0x08) # Forest Temple switch flag (Poe Sisters cutscene)
     save_context.write_bits(0x00D4 + 0x05 * 0x1C + 0x04 + 0x1, 0x01) # Water temple switch flag (Ruto)
     save_context.write_bits(0x00D4 + 0x51 * 0x1C + 0x04 + 0x2, 0x08) # Hyrule Field switch flag (Owl)
@@ -979,6 +979,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
     rom.write_int16(0x00E1F3C8, 0x5036)
     rom.write_int16(0x00E1F3CA, 0x5036)
     rom.write_int16(0x00E1F3CC, 0x5036)
+
+	# Fast Dungeons
+    if world.fast_dungeons:
+         save_context.write_bits(0x00D9, 0x01) # Deku Basement Block Down; 1		
+         save_context.write_bits(0x00DB, 0x60) # Deku 1F Web Broken; 1, Deku Basement Web Broken; 3
+         save_context.write_bits(0x00F4, 0x04) # Dodongo's Cavern Mouth Opened
+         save_context.write_bits(0x0110, 0x20) # Jabu Jabu's Belly Platform Lowered
+         save_context.write_bits(0x0133, 0x04) # Forest Temple; Prevents Poes From Spawning in Main Room to Steal Fire; Allows all to Spawn Except Meg  
+         save_context.write_bits(0x014A, 0x40) # Fire Temple Pillar Dropped
+         save_context.write_bits(0x0181, 0x80) # Spirit Temple Elevator
+         save_context.write_bits(0x0183, 0x10) # Spirit Temple Statue Face
+         save_context.write_bits(0x019C, 0x20) # Shadow Temple Boat Shortcut opened
 
     if world.no_first_dampe_race:
         save_context.write_bits(0x00D4 + 0x48 * 0x1C + 0x08 + 0x3, 0x10) # Beat First Dampe Race (& Chest Spawned)

@@ -1640,6 +1640,14 @@ setting_infos = [
         shared         = True,
     ),
     Checkbutton(
+        name           = 'fast_dungeons',
+        gui_text       = 'Fast Dungeons',
+        gui_tooltip    = '''\
+            Shortcuts are opened in various dungeons.
+        ''',
+        shared         = True,
+    ),
+    Checkbutton(
         name           = 'no_guard_stealth',
         gui_text       = 'Skip Child Stealth',
         gui_tooltip    = '''\
@@ -1718,6 +1726,17 @@ setting_infos = [
 
             Two song locations will give items,
             instead of Prelude and Serenade.
+        ''',
+        shared         = True,
+    ),
+    Checkbutton(
+        name           = 'start_with_suns_song',
+        gui_text       = 'Start with Suns Song',
+        gui_tooltip    = '''\
+            Start the game with Sun's Song.
+
+            A song locations will give an item,
+            instead of Sun's Song.
         ''',
         shared         = True,
     ),

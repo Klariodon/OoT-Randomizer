@@ -313,6 +313,8 @@ class WorldDistribution(object):
             self.give_item('Prelude of Light')
             self.give_item('Serenade of Water')
             self.give_item('Farores Wind')
+        if world.start_with_suns_song:
+            self.give_item('Suns Song')
 
 
     def pool_remove_item(self, pools, item_name, count, world_id=None, use_base_pool=True):
