@@ -315,8 +315,17 @@ class WorldDistribution(object):
             self.give_item('Farores Wind')
         if world.start_with_suns_song:
             self.give_item('Suns Song')
-
-
+        if world.worst_setting:
+            self.add_location('Links Pocket', 'Light Medallion')
+            self.add_location('Queen Gohma', 'Kokiri Emerald')
+            self.add_location('King Dodongo', 'Goron Ruby')
+            self.add_location('Barinade', 'Zora Sapphire')
+            self.add_location('Phantom Ganon', 'Forest Medallion')
+            self.add_location('Volvagia', 'Fire Medallion')
+            self.add_location('Morpha', 'Water Medallion')
+            self.add_location('Bongo Bongo', 'Shadow Medallion')
+            self.add_location('Twinrova', 'Spirit Medallion')
+            
     def pool_remove_item(self, pools, item_name, count, world_id=None, use_base_pool=True):
         removed_items = []
 
