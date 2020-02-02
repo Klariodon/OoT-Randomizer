@@ -1,7 +1,9 @@
 from version import __version__
+from Utils import data_path
 import random
 import Music as music
 import Sounds as sfx
+import IconManip as icon
 
 from collections import namedtuple
 Color = namedtuple('Color', '  R     G     B')
@@ -331,6 +333,19 @@ def patch_model_colors(rom, color, model_addresses):
         rom.write_bytes(address, darkened_color)
 
 
+def patch_tunic_icon(rom, tunic, color):
+    # patch tunic icon colors
+    icon_locations = {
+        'Kokiri Tunic': 0x007FE000,
+        'Goron Tunic': 0x007FF000,
+        'Zora Tunic': 0x00800000,
+    }
+
+    tunic_icon = icon.generate_tunic_icon(color)
+
+    rom.write_bytes(icon_locations[tunic], tunic_icon)
+
+
 def patch_tunic_colors(rom, settings, log, symbols):
     # patch tunic colors
     tunics = [
@@ -355,6 +370,11 @@ def patch_tunic_colors(rom, settings, log, symbols):
             color = list(int(tunic_option[i:i+2], 16) for i in (0, 2 ,4))
             tunic_option = 'Custom'
         rom.write_bytes(address, color)
+
+        # patch the tunic icon
+        if [tunic, tunic_option] not in [['Kokiri Tunic', 'Kokiri Green'], ['Goron Tunic', 'Goron Red'], ['Zora Tunic', 'Zora Blue']]:
+            patch_tunic_icon(rom, tunic, color)
+
         log.tunic_colors[tunic] = dict(option=tunic_option, color=''.join(['{:02X}'.format(c) for c in color]))
 
 
@@ -548,6 +568,7 @@ def patch_heart_colors(rom, settings, log, symbols):
             rom.write_int16s(file_select_address + 6, color) # file select DD hearts
             if settings.correct_model_colors:
                 patch_model_colors(rom, color, model_addresses) # heart model colors
+                icon.patch_overworld_icon(rom, color, 0xF43D80) # Overworld Heart Icon
         log.heart_colors[heart] = dict(option=heart_option, color=''.join(['{:02X}'.format(c) for c in color]))
 
 
@@ -573,6 +594,8 @@ def patch_magic_colors(rom, settings, log, symbols):
         rom.write_int16s(symbol, color)
         if settings.correct_model_colors and magic_option != 'Green':
             patch_model_colors(rom, color, model_addresses)
+            icon.patch_overworld_icon(rom, color, 0xF45650, data_path('icons/magicSmallExtras.raw')) # Overworld Small Pot
+            icon.patch_overworld_icon(rom, color, 0xF47650, data_path('icons/magicLargeExtras.raw')) # Overworld Big Pot
         log.magic_colors[magic_color] = dict(option=magic_option, color=''.join(['{:02X}'.format(c) for c in color]))
 
 
