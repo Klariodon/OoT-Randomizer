@@ -14,6 +14,9 @@ Differences between this branch and the main Dev branch (on [Testrunner's Fork](
 * Picking up Gold Skulltula Tokens in non-Tokensanity displays a self-closing textbox which no longer freezes the player.
 * "Bombchus In Logic" is improved to include bombchu drops (from grass, pots, etc) that start dropping once you have found Bombchus.
 * New cosmetic option to have all ingame item model colors, as well as drop icons, match cosmetic colors (for hearts, magic and gauntlets).
+* The "Skip First Dampe Race" setting is changed to "Skip First Minigame Phases", which also applies to the Horseback Archery minigame, and allows you to get both rewards at once if you score 1500 points in a single attempt.
+* New Inventory/Equipment/Status Icons Display in File Select from [rlbond86's Menu Icons Branch](https://github.com/rlbond86/OoT-Randomizer/tree/menu_icons)
+* New "Shuffle Medigoron & Carpet Salesman" option to have both of these NPCs sell a randomized item once at the price of 200 Rupees.
 
 ## Index
 
@@ -111,9 +114,10 @@ player.
 * Non-Always Location hints cannot be placed for an area that already has a Foolish hint.
   * If the location hint is placed first, then it can still appear in a foolish hinted area, however in Tournament hint distribution the Foolish hints are placed first so that cannot happen.
 * The location containing Light Arrows will be considered a hinted location if Ganondorf's hint can be reached without them.
-* Ganondorf no longer hints at his Boss Key chest contents.
+* Ganondorf no longer hints at his Boss Key chest contents, except when Light Arrows don't exist (only possible in Triforce Hunt).
 * Improved Entrance Randomizer hints.
 * Updated Compressor. The GUI progress bar is now granular. If for some reason, the rom won't fit into 32MB, then the compressor will increase the output size.
+* Revised some settings tooltips.
 * Refactored Logic once again. It now uses helper json rules and rules can reference other rules.
 * Disabled settings don't show up in the spoiler.
 * Plando will now accept JSON lists for `item` in the location dictionary to randomly choose between for placement.
@@ -121,6 +125,7 @@ player.
 * "Start with" settings are now handled by the Plando library.
 * Further seed generation speed improvements.
 * The main search algorithm was renamed Search (from Playthrough) to avoid confusion with the spoiler playthrough.
+* General code cleanup and typo fixes.
 
 #### Bug Fixes
 * Minor stability fix in Plando
@@ -128,6 +133,7 @@ player.
 * Plando no longer occasionally attempts to place an item on a location where it's not allowed.
 * Plando starting items and items set in specific locations now count toward the pool allocation. (Starting items are replaced with junk.)
 * Plando now refuses to place more than the maximum amount of bottles, adult trade items, shop items, or total non-junk items.
+* Other various Plando bug fixes.
 * Starting items for adult that auto-equip should do so correctly now. (Non-Kokiri Tunics won't autoequip at the moment.)
 * Fixed two chests in MQ Shadow Temple that had swapped names in plando and spoilers.
 * Removed (unnecessarily) duplicated/overlapping hints.
