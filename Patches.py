@@ -991,7 +991,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
          save_context.write_bits(0x0181, 0x80) # Spirit Temple Elevator
          save_context.write_bits(0x0183, 0x10) # Spirit Temple Statue Face
          save_context.write_bits(0x019C, 0x20) # Shadow Temple Boat Shortcut opened
-
+	
     # Make the Kakariko Gate not open with the MS
     if not world.open_kakariko:
         rom.write_int32(0xDD3538, 0x34190000) # li t9, 0
@@ -1250,7 +1250,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         rom.write_int32(rom.sym('CHAIN_HBA_REWARDS'), 1)
         # Update the first horseback archery text to make it clear both rewards are available from the start
         update_message_by_id(messages, 0x6040, "Hey newcomer, you have a fine \x01horse!\x04I don't know where you stole \x01it from, but...\x04OK, how about challenging this \x01\x05\x41horseback archery\x05\x40?\x04Once the horse starts galloping,\x01shoot the targets with your\x01arrows. \x04Let's see how many points you \x01can score. You get 20 arrows.\x04If you can score \x05\x411,000 points\x05\x40, I will \x01give you something good! And even \x01more if you score \x05\x411,500 points\x05\x40!\x0B\x02")
-	
+
     # Sets hooks for gossip stone changes
 
     symbol = rom.sym("GOSSIP_HINT_CONDITION");
@@ -1558,7 +1558,7 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         update_message_by_id(messages, 0x304C, "I have something cool right here.\x01How about it...\x07\x30\x4F\x02")
         update_message_by_id(messages, 0x304D, "How do you like it?\x02")
         update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
-	
+
     if world.shuffle_smallkeys == 'remove' or world.shuffle_bosskeys == 'remove' or world.shuffle_ganon_bosskey == 'remove':
         locked_doors = get_locked_doors(rom, world)
         for _,[door_byte, door_bits] in locked_doors.items():
