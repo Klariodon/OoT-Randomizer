@@ -992,9 +992,6 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
          save_context.write_bits(0x0183, 0x10) # Spirit Temple Statue Face
          save_context.write_bits(0x019C, 0x20) # Shadow Temple Boat Shortcut opened
 
-    if world.no_first_dampe_race:
-        save_context.write_bits(0x00D4 + 0x48 * 0x1C + 0x08 + 0x3, 0x10) # Beat First Dampe Race (& Chest Spawned)
-
     # Make the Kakariko Gate not open with the MS
     if not world.open_kakariko:
         rom.write_int32(0xDD3538, 0x34190000) # li t9, 0
@@ -1248,6 +1245,12 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         symbol = rom.sym('JABU_ELEVATOR_ENABLE')
         rom.write_byte(symbol, 0x01)
 
+    if world.no_first_minigame_phases:
+        save_context.write_bits(0x00D4 + 0x48 * 0x1C + 0x08 + 0x3, 0x10) # Beat First Dampe Race (& Chest Spawned)
+        rom.write_int32(rom.sym('CHAIN_HBA_REWARDS'), 1)
+        # Update the first horseback archery text to make it clear both rewards are available from the start
+        update_message_by_id(messages, 0x6040, "Hey newcomer, you have a fine \x01horse!\x04I don't know where you stole \x01it from, but...\x04OK, how about challenging this \x01\x05\x41horseback archery\x05\x40?\x04Once the horse starts galloping,\x01shoot the targets with your\x01arrows. \x04Let's see how many points you \x01can score. You get 20 arrows.\x04If you can score \x05\x411,000 points\x05\x40, I will \x01give you something good! And even \x01more if you score \x05\x411,500 points\x05\x40!\x0B\x02")
+	
     # Sets hooks for gossip stone changes
 
     symbol = rom.sym("GOSSIP_HINT_CONDITION");
@@ -1544,6 +1547,18 @@ def patch_rom(spoiler:Spoiler, world:World, rom:Rom):
         # Change first magic bean to cost 60 (is used as the price for the one time item when beans are shuffled)
         rom.write_byte(0xE209FD, 0x3C)
 
+    if world.shuffle_medigoron_carpet_salesman:
+        rom.write_byte(rom.sym('SHUFFLE_CARPET_SALESMAN'), 0x01)
+        # Update carpet salesman messages to better fit the fact that he sells a randomized item
+        update_message_by_id(messages, 0x6077, "\x06\x41Well Come!\x04I am selling stuff, strange and \x01rare, from all over the world to \x01everybody.\x01Today's special is...\x04A mysterious item! \x01Intriguing! \x01I won't tell you what it is until \x01I see the money....\x04How about \x05\x41200 Rupees\x05\x40?\x01\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+        update_message_by_id(messages, 0x6078, "Thank you very much!\x04The mark that will lead you to\x01the Spirit Temple is the \x05\x41flag on\x01the left \x05\x40outside the shop.\x01Be seeing you!\x02")
+
+        rom.write_byte(rom.sym('SHUFFLE_MEDIGORON'), 0x01)
+        # Update medigoron messages to better fit the fact that he sells a randomized item
+        update_message_by_id(messages, 0x304C, "I have something cool right here.\x01How about it...\x07\x30\x4F\x02")
+        update_message_by_id(messages, 0x304D, "How do you like it?\x02")
+        update_message_by_id(messages, 0x304F, "How about buying this cool item for \x01200 Rupees?\x01\x1B\x05\x42Buy\x01Don't buy\x05\x40\x02")
+	
     if world.shuffle_smallkeys == 'remove' or world.shuffle_bosskeys == 'remove' or world.shuffle_ganon_bosskey == 'remove':
         locked_doors = get_locked_doors(rom, world)
         for _,[door_byte, door_bits] in locked_doors.items():
