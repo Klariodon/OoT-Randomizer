@@ -77,10 +77,10 @@
             "Shadow Temple Boss Key Chest": "can_use(Dins_Fire)",
             "Shadow Temple Hidden Floormaster Chest": "True",
             "Bongo Bongo Heart": "
-                ((sd and (Small_Key_Shadow_Temple, 5)) or (fd and (Small_Key_Shadow_Temple, 3)) and Boss_Key_Shadow_Temple and
+                ((sd and (Small_Key_Shadow_Temple, 5)) or (fd and (Small_Key_Shadow_Temple, 3))) and Boss_Key_Shadow_Temple and
                 (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus))",
             "Bongo Bongo": "
-                ((sd and (Small_Key_Shadow_Temple, 5)) or (fd and (Small_Key_Shadow_Temple, 3)) and Boss_Key_Shadow_Temple and
+                ((sd and (Small_Key_Shadow_Temple, 5)) or (fd and (Small_Key_Shadow_Temple, 3))) and Boss_Key_Shadow_Temple and
                 (Bow or can_use(Distant_Scarecrow) or (logic_shadow_statue and has_bombchus))",
             "GS Shadow Temple Triple Giant Pot": "True"
         }
